@@ -1,5 +1,7 @@
 KEY="mykey"
-CHAINID="canto_9000-1"
+KEY2="mykey2"
+KEY3="mykey3"
+CHAINID="canto_42069-1"
 MONIKER="localtestnet"
 KEYRING="test"
 KEYALGO="eth_secp256k1"
@@ -21,6 +23,8 @@ cantod config chain-id $CHAINID
 
 # if $KEY exists it should be deleted
 cantod keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO
+cantod keys add $KEY2 --keyring-backend $KEYRING --algo $KEYALGO
+cantod keys add $KEY3 --keyring-backend $KEYRING --algo $KEYALGO
 
 # Set moniker and chain-id for Canto (Moniker can be anything, chain-id must be an integer)
 cantod init $MONIKER --chain-id $CHAINID
@@ -81,18 +85,21 @@ fi
 
 # Allocate genesis accounts (cosmos formatted addresses)
 cantod add-genesis-account $KEY 100000000000000000000010000acanto --keyring-backend $KEYRING
+cantod add-genesis-account $KEY2 100000000000000000000010000acanto --keyring-backend $KEYRING
+cantod add-genesis-account $KEY3 100000000000000000000010000acanto --keyring-backend $KEYRING
 
 # Update total supply with claim values
-validators_supply=$(cat $HOME/.cantod/config/genesis.json | jq -r '.app_state["bank"]["supply"][0]["amount"]')
+#validators_supply=$(cat $HOME/.cantod/config/genesis.json | jq -r '.app_state["bank"]["supply"][0]["amount"]')
 # Bc is required to add this big numbers
 # total_supply=$(bc <<< "$amount_to_claim+$validators_supply")
-total_supply=100000000000000000000010000
+total_supply=300000000000000000000030000
 cat $HOME/.cantod/config/genesis.json | jq -r --arg total_supply "$total_supply" '.app_state["bank"]["supply"][0]["amount"]=$total_supply' > $HOME/.cantod/config/tmp_genesis.json && mv $HOME/.cantod/config/tmp_genesis.json $HOME/.cantod/config/genesis.json
 
 echo $KEYRING
 echo $KEY
 # Sign genesis transaction
 cantod gentx $KEY 1000000000000000000000acanto --keyring-backend $KEYRING --chain-id $CHAINID
+#cantod gentx $KEY2 1000000000000000000000acanto --keyring-backend $KEYRING --chain-id $CHAINID
 
 # Collect genesis tx
 cantod collect-gentxs
