@@ -2,7 +2,7 @@
 **How to validate on the Canto Testnet**
 *This is the Canto Testnet-1 (canto_7777-1)*
 
-> Genesis [Published](https://github.com/Canto-Network/Canto-Testnet/Networks/Testnet/raw/main/genesis.json)
+> Genesis [Published](https://github.com/Canto-Network/Canto-Testnet/raw/main/Networks/Testnet/genesis.json)
 
 > Peers [Published](https://hack.md)
 
