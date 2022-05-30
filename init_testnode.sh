@@ -1,7 +1,7 @@
 KEY="mykey"
 KEY2="mykey2"
 KEY3="mykey3"
-CHAINID="canto_42069-1"
+CHAINID="canto_7777-1"
 MONIKER="localtestnet"
 KEYRING="test"
 KEYALGO="eth_secp256k1"
