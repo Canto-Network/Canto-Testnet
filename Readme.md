@@ -2,7 +2,7 @@
 **How to validate on the Canto Testnet**
 *This is the Canto Testnet-1 (canto_7777-1)*
 
-​> Genesis (Published)[https://github.com/Canto-Network/Canto-Testnet/raw/main/genesis.json]
+​> Genesis (Published)[https://github.com/Canto-Network/Canto-Testnet/Networks/Testnet/raw/main/genesis.json]
 
 ​> Peers (Published)[https://hack.md]
 
@@ -10,7 +10,7 @@
 **Minimum**
 * 16 GB RAM
 * 100 GB NVME SSD
-* 3.2 x4 GHz CPU
+* 3.2 GHz x4 CPU
 
 **Recommended**
 * 32 GB RAM
