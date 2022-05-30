@@ -2,9 +2,9 @@
 **How to validate on the Canto Testnet**
 *This is the Canto Testnet-1 (canto_7777-1)*
 
-​> Genesis (Published)[https://github.com/Canto-Network/Canto-Testnet/Networks/Testnet/raw/main/genesis.json]
+> Genesis [Published](https://github.com/Canto-Network/Canto-Testnet/Networks/Testnet/raw/main/genesis.json)
 
-​> Peers (Published)[https://hack.md]
+> Peers [Published](https://hack.md)
 
 ## Hardware Requirements
 **Minimum**
@@ -22,7 +22,7 @@
 > Linux (x86_64) or Linux (amd64) Reccomended Arch Linux
 
 **Dependencies**
-> Prerequisite: go1.18+ required.   ​
+> Prerequisite: go1.18+ required.
 * Arch Linux: `pacman -S go`
 * Ubuntu: `sudo snap install go --classic`
 
@@ -61,17 +61,17 @@ mv $HOME/go/bin/cantod /usr/bin/
 
 * Download the Genesis file: `wget https://github.com/Canto-Network/Canto-Testnet/raw/main/genesis.json $HOME/.cantod/config/`
  
-* Edit the minimum-gas-prices in ${HOME}/.cantod/config/app.toml `sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01acanto"/g' $HOME/.cantod/config/app.toml`
+* Edit the minimum-gas-prices in ${HOME}/.cantod/config/app.toml: `sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01acanto"/g' $HOME/.cantod/config/app.toml`
 
 * Start craftd by creating a systemd service to run the node in the background
 `nano /etc/systemd/system/cantod.service`
-> Copy and paste the following file into your service file. Be sure to edit as you see fit.
+> Copy and paste the following text into your service file. Be sure to edit as you see fit.
 
 ```bash
 [Unit]
 Description=Craft Node
 After=network.target
-​
+
 [Service]
 Type=simple
 User=root
@@ -82,14 +82,17 @@ StartLimitInterval=0
 RestartSec=3
 LimitNOFILE=65535
 LimitMEMLOCK=209715200
-​
+
 [Install]
 WantedBy=multi-user.target
 ```
-Reload the service files `sudo systemctl daemon-reload` Create the symlinlk `sudo systemctl enable cantod.service` Start the node sudo `systemctl start cantod && journalctl -u cantod -f`
+## Start the node
+* Reload the service files: `sudo systemctl daemon-reload` 
+* Create the symlinlk: `sudo systemctl enable cantod.service` 
+* Start the node sudo: `systemctl start cantod && journalctl -u cantod -f`
 
 ### Create Validator Transaction
-
+```bash
 cantod tx staking create-validator \
 --from {{KEY_NAME}} \
 --chain-id canto_7777-1 \
@@ -103,3 +106,4 @@ cantod tx staking create-validator \
 --pubkey $(cantod tendermint show-validator) \
 --min-self-delegation="1" \
 --amount <token delegation>acanto \
+```
