@@ -49,9 +49,9 @@ mv $HOME/go/bin/cantod /usr/bin/
 
 * `cantod keys add [key_name]`
 
-* `craftd keys add [key_name] --recover` to regenerate keys with your mnemonic
+* `cantod keys add [key_name] --recover` to regenerate keys with your mnemonic
 
-* `craftd keys add [key_name] --ledger` to generate keys with ledger device
+* `cantod keys add [key_name] --ledger` to generate keys with ledger device
 
 ## Validator setup instructions
 
@@ -61,22 +61,22 @@ mv $HOME/go/bin/cantod /usr/bin/
 
 * Download the Genesis file: `wget https://github.com/Canto-Network/Canto-Testnet/raw/main/genesis.json $HOME/.cantod/config/`
  
-* Edit the minimum-gas-prices in ${HOME}/.cantod/config/app.toml: `sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01acanto"/g' $HOME/.cantod/config/app.toml`
+* Edit the minimum-gas-prices in ${HOME}/.cantod/config/app.toml: `sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.0001acanto"/g' $HOME/.cantod/config/app.toml`
 
-* Start craftd by creating a systemd service to run the node in the background
+* Start cantod by creating a systemd service to run the node in the background
 `nano /etc/systemd/system/cantod.service`
 > Copy and paste the following text into your service file. Be sure to edit as you see fit.
 
 ```bash
 [Unit]
-Description=Craft Node
+Description=Canto Node
 After=network.target
 
 [Service]
 Type=simple
 User=root
 WorkingDirectory=/root/
-ExecStart=/root/go/bin/craftd start
+ExecStart=/root/go/bin/cantod start --trace --log_level info --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable
 Restart=on-failure
 StartLimitInterval=0
 RestartSec=3
@@ -106,4 +106,5 @@ cantod tx staking create-validator \
 --pubkey $(cantod tendermint show-validator) \
 --min-self-delegation="1" \
 --amount <token delegation>acanto \
+--node http://<>
 ```
