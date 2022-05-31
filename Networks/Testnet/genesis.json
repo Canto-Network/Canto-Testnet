@@ -1,5 +1,5 @@
 {
-  "genesis_time": "2022-05-30T01:43:26.377890365Z",
+  "genesis_time": "2022-05-31T02:31:08.258702Z",
   "chain_id": "canto_7777-1",
   "initial_height": "1",
   "consensus_params": {
@@ -34,7 +34,7 @@
         {
           "@type": "/ethermint.types.v1.EthAccount",
           "base_account": {
-            "address": "canto1hnra3cn4x58jr5awpfydhsagtymsay28t50wky",
+            "address": "canto1en2xq3pswjpadu48a4enltsjy54jr4fp28rw4d",
             "pub_key": null,
             "account_number": "0",
             "sequence": "0"
@@ -44,7 +44,7 @@
         {
           "@type": "/ethermint.types.v1.EthAccount",
           "base_account": {
-            "address": "canto1ecjluuqwkg4jtrdcdxdv8wh7xgxzen9jkylr5a",
+            "address": "canto19dgpmpmj5zklad703ln8mlr34xrxswhadcaafv",
             "pub_key": null,
             "account_number": "0",
             "sequence": "0"
@@ -54,7 +54,7 @@
         {
           "@type": "/ethermint.types.v1.EthAccount",
           "base_account": {
-            "address": "canto15nnrj680zvps29qh8n9jh2w7q2rqr2pyrajn8d",
+            "address": "canto10kqwu4cd2qswpgm5hh73wk5wsy6cyaedet8cg7",
             "pub_key": null,
             "account_number": "0",
             "sequence": "0"
@@ -73,7 +73,7 @@
       },
       "balances": [
         {
-          "address": "canto15nnrj680zvps29qh8n9jh2w7q2rqr2pyrajn8d",
+          "address": "canto19dgpmpmj5zklad703ln8mlr34xrxswhadcaafv",
           "coins": [
             {
               "denom": "acanto",
@@ -82,7 +82,7 @@
           ]
         },
         {
-          "address": "canto1hnra3cn4x58jr5awpfydhsagtymsay28t50wky",
+          "address": "canto10kqwu4cd2qswpgm5hh73wk5wsy6cyaedet8cg7",
           "coins": [
             {
               "denom": "acanto",
@@ -91,7 +91,7 @@
           ]
         },
         {
-          "address": "canto1ecjluuqwkg4jtrdcdxdv8wh7xgxzen9jkylr5a",
+          "address": "canto1en2xq3pswjpadu48a4enltsjy54jr4fp28rw4d",
           "coins": [
             {
               "denom": "acanto",
@@ -226,7 +226,7 @@
               {
                 "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
                 "description": {
-                  "moniker": "localtestnet",
+                  "moniker": "plex-validator",
                   "identity": "",
                   "website": "",
                   "security_contact": "",
@@ -238,11 +238,11 @@
                   "max_change_rate": "0.010000000000000000"
                 },
                 "min_self_delegation": "1",
-                "delegator_address": "canto1hnra3cn4x58jr5awpfydhsagtymsay28t50wky",
-                "validator_address": "cantovaloper1hnra3cn4x58jr5awpfydhsagtymsay28f2g28p",
+                "delegator_address": "canto1en2xq3pswjpadu48a4enltsjy54jr4fp28rw4d",
+                "validator_address": "cantovaloper1en2xq3pswjpadu48a4enltsjy54jr4fpgey2yg",
                 "pubkey": {
                   "@type": "/cosmos.crypto.ed25519.PubKey",
-                  "key": "sjUTckBbl9KLjmjc9h9Vk6diMpwz1uhc0aTaPYKAkVs="
+                  "key": "T1HkTgdSJblBOEdRO9BBKOwRorY5Nfm5NYKG6ogj2YA="
                 },
                 "value": {
                   "denom": "acanto",
@@ -250,7 +250,7 @@
                 }
               }
             ],
-            "memo": "cb653a2386a1e152f2dc14ac7fef9fdc5f34ae8f@172.17.226.58:26656",
+            "memo": "c1bdbbe95d447f696abfac3d6df9c13edb01681c@172.16.255.171:26656",
             "timeout_height": "0",
             "extension_options": [],
             "non_critical_extension_options": []
@@ -260,7 +260,7 @@
               {
                 "public_key": {
                   "@type": "/ethermint.crypto.v1.ethsecp256k1.PubKey",
-                  "key": "A/A5PNKDMEFWYn2zCZpLtBWWWD08C75eA3ngbJD/DEfl"
+                  "key": "AgAFE9U8iAXa9UXce3Dm5JPn5+ZnVw4SJhbB31rY3crX"
                 },
                 "mode_info": {
                   "single": {
@@ -278,7 +278,7 @@
             }
           },
           "signatures": [
-            "otcKJRoc26VQvbOnX33HX/J2DzK0jAkNLAdGkZZf8VgoD/TolD/SIa1QeXvFfkypUe4cW1WAAI4bSIhMf1daSgE="
+            "+ylbMpa1NuZxYQc2c+GU83UbAZC2zMSoR2RwIyyIHo8Nybd5Byu7x+WqA4yYkg2nqlV08MzDkMX3yAsyfmHCmAE="
           ]
         }
       ]
@@ -298,7 +298,7 @@
         "max_deposit_period": "172800s"
       },
       "voting_params": {
-        "voting_period": "60s"
+        "voting_period": "3600s"
       },
       "tally_params": {
         "quorum": "0.000000000000000000",
@@ -364,7 +364,7 @@
           "usage_incentives": "0.333333333000000000",
           "community_pool": "0.133333333000000000"
         },
-        "enable_inflation": true
+        "enable_inflation": false
       },
       "period": "0",
       "epoch_identifier": "day",
