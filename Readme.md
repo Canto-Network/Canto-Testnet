@@ -59,7 +59,7 @@ mv $HOME/go/bin/cantod /usr/bin/
 
 * Initialize node: `cantod init <moniker> --chain-id canto_7777-1`
 
-* Download the Genesis file: `wget https://github.com/Canto-Network/Canto-Testnet/raw/main/genesis.json $HOME/.cantod/config/`
+* Download the Genesis file: `wget https://github.com/Canto-Network/Canto-Testnet/raw/main/Networks/Testnet/genesis.json -P $HOME/.cantod/config/`
  
 * Edit the minimum-gas-prices in ${HOME}/.cantod/config/app.toml: `sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.0001acanto"/g' $HOME/.cantod/config/app.toml`
 
@@ -106,5 +106,5 @@ cantod tx staking create-validator \
 --pubkey $(cantod tendermint show-validator) \
 --min-self-delegation="1" \
 --amount <token delegation>acanto \
---node http://<>
+--node http://65.21.202.116:11657
 ```
