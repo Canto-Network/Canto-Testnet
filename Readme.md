@@ -4,7 +4,7 @@
 
 > Genesis [Published](https://github.com/Canto-Network/Canto-Testnet/raw/main/Networks/Testnet/genesis.json)
 
-> Peers [Published](https://hack.md)
+> Peers [Published](https://github.com/Canto-Network/Canto-Testnet/blob/main/Networks/Testnet/peers.txt)
 
 ## Hardware Requirements
 **Minimum**
