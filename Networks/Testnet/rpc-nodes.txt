@@ -1,1 +1,1 @@
-https://canto.rpc.chandrastation.com
+https://canto.rpc.chandrastation.com:443
