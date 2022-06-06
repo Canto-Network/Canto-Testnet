@@ -106,5 +106,5 @@ cantod tx staking create-validator \
 --pubkey $(cantod tendermint show-validator) \
 --min-self-delegation="1" \
 --amount <token delegation>acanto \
---node http://65.21.202.116:26657
+--node https://canto.rpc.chandrastation.com:443
 ```
