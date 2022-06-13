@@ -15,8 +15,8 @@ import (
 
 	"github.com/tharsis/ethermint/server/config"
 
-	"github.com/Canto-Network/canto/v3/testutil/network"
-	"github.com/Canto-Network/canto/v3/x/erc20/types"
+	"github.com/Canto-Network/canto/v4/testutil/network"
+	"github.com/Canto-Network/canto/v4/x/erc20/types"
 )
 
 // var _ = Describe("E2e", func() {

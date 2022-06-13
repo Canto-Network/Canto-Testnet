@@ -11,9 +11,9 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/tharsis/ethermint/crypto/ethsecp256k1"
 	"github.com/tharsis/ethermint/encoding"
-	"github.com/tharsis/evmos/v4/app"
-	"github.com/tharsis/evmos/v4/testutil"
-	"github.com/tharsis/evmos/v4/x/erc20/types"
+	"github.com/Canto-Network/canto/v4/app"
+	"github.com/Canto-Network/canto/v4/testutil"
+	"github.com/Canto-Network/canto/v4/x/erc20/types"
 
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
 	abci "github.com/tendermint/tendermint/abci/types"

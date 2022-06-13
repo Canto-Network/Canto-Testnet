@@ -258,9 +258,9 @@ func (m *RegisterERC20Proposal) GetErc20Address() string {
 	return ""
 }
 
-// ToggleTokenRelayProposal is a gov Content type to toggle
+// ToggleTokenConversionProposal is a gov Content type to toggle
 // the internal relaying of a token pair.
-type ToggleTokenRelayProposal struct {
+type ToggleTokenConversionProposal struct {
 	// title of the proposal
 	Title string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	// proposal description
@@ -270,16 +270,16 @@ type ToggleTokenRelayProposal struct {
 	Token string `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 }
 
-func (m *ToggleTokenRelayProposal) Reset()         { *m = ToggleTokenRelayProposal{} }
-func (m *ToggleTokenRelayProposal) String() string { return proto.CompactTextString(m) }
-func (*ToggleTokenRelayProposal) ProtoMessage()    {}
-func (*ToggleTokenRelayProposal) Descriptor() ([]byte, []int) {
+func (m *ToggleTokenConversionProposal) Reset()         { *m = ToggleTokenConversionProposal{} }
+func (m *ToggleTokenConversionProposal) String() string { return proto.CompactTextString(m) }
+func (*ToggleTokenConversionProposal) ProtoMessage()    {}
+func (*ToggleTokenConversionProposal) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5c364669f6882b8b, []int{3}
 }
-func (m *ToggleTokenRelayProposal) XXX_Unmarshal(b []byte) error {
+func (m *ToggleTokenConversionProposal) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *ToggleTokenRelayProposal) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ToggleTokenConversionProposal) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_ToggleTokenRelayProposal.Marshal(b, m, deterministic)
 	} else {
@@ -291,33 +291,33 @@ func (m *ToggleTokenRelayProposal) XXX_Marshal(b []byte, deterministic bool) ([]
 		return b[:n], nil
 	}
 }
-func (m *ToggleTokenRelayProposal) XXX_Merge(src proto.Message) {
+func (m *ToggleTokenConversionProposal) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_ToggleTokenRelayProposal.Merge(m, src)
 }
-func (m *ToggleTokenRelayProposal) XXX_Size() int {
+func (m *ToggleTokenConversionProposal) XXX_Size() int {
 	return m.Size()
 }
-func (m *ToggleTokenRelayProposal) XXX_DiscardUnknown() {
+func (m *ToggleTokenConversionProposal) XXX_DiscardUnknown() {
 	xxx_messageInfo_ToggleTokenRelayProposal.DiscardUnknown(m)
 }
 
 var xxx_messageInfo_ToggleTokenRelayProposal proto.InternalMessageInfo
 
-func (m *ToggleTokenRelayProposal) GetTitle() string {
+func (m *ToggleTokenConversionProposal) GetTitle() string {
 	if m != nil {
 		return m.Title
 	}
 	return ""
 }
 
-func (m *ToggleTokenRelayProposal) GetDescription() string {
+func (m *ToggleTokenConversionProposal) GetDescription() string {
 	if m != nil {
 		return m.Description
 	}
 	return ""
 }
 
-func (m *ToggleTokenRelayProposal) GetToken() string {
+func (m *ToggleTokenConversionProposal) GetToken() string {
 	if m != nil {
 		return m.Token
 	}
@@ -403,7 +403,7 @@ func init() {
 	proto.RegisterType((*TokenPair)(nil), "canto.erc20.v1.TokenPair")
 	proto.RegisterType((*RegisterCoinProposal)(nil), "canto.erc20.v1.RegisterCoinProposal")
 	proto.RegisterType((*RegisterERC20Proposal)(nil), "canto.erc20.v1.RegisterERC20Proposal")
-	proto.RegisterType((*ToggleTokenRelayProposal)(nil), "canto.erc20.v1.ToggleTokenRelayProposal")
+	proto.RegisterType((*ToggleTokenConversionProposal)(nil), "canto.erc20.v1.ToggleTokenConversionProposal")
 	proto.RegisterType((*UpdateTokenPairERC20Proposal)(nil), "canto.erc20.v1.UpdateTokenPairERC20Proposal")
 }
 
@@ -480,14 +480,14 @@ func (this *TokenPair) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *ToggleTokenRelayProposal) Equal(that interface{}) bool {
+func (this *ToggleTokenConversionProposal) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*ToggleTokenRelayProposal)
+	that1, ok := that.(*ToggleTokenConversionProposal)
 	if !ok {
-		that2, ok := that.(ToggleTokenRelayProposal)
+		that2, ok := that.(ToggleTokenConversionProposal)
 		if ok {
 			that1 = &that2
 		} else {
@@ -686,7 +686,7 @@ func (m *RegisterERC20Proposal) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *ToggleTokenRelayProposal) Marshal() (dAtA []byte, err error) {
+func (m *ToggleTokenConversionProposal) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -696,12 +696,12 @@ func (m *ToggleTokenRelayProposal) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *ToggleTokenRelayProposal) MarshalTo(dAtA []byte) (int, error) {
+func (m *ToggleTokenConversionProposal) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *ToggleTokenRelayProposal) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ToggleTokenConversionProposal) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -855,7 +855,7 @@ func (m *RegisterERC20Proposal) Size() (n int) {
 	return n
 }
 
-func (m *ToggleTokenRelayProposal) Size() (n int) {
+func (m *ToggleTokenConversionProposal) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1353,7 +1353,7 @@ func (m *RegisterERC20Proposal) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *ToggleTokenRelayProposal) Unmarshal(dAtA []byte) error {
+func (m *ToggleTokenConversionProposal) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1376,10 +1376,10 @@ func (m *ToggleTokenRelayProposal) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: ToggleTokenRelayProposal: wiretype end group for non-group")
+			return fmt.Errorf("proto: ToggleTokenConversionProposal: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ToggleTokenRelayProposal: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ToggleTokenConversionProposal: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

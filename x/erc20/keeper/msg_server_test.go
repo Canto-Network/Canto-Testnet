@@ -9,10 +9,10 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
+	"github.com/Canto-Network/canto/v4/x/erc20/keeper"
+	"github.com/Canto-Network/canto/v4/x/erc20/types"
 	"github.com/tharsis/ethermint/x/evm/statedb"
 	evmtypes "github.com/tharsis/ethermint/x/evm/types"
-	"github.com/tharsis/evmos/v4/x/erc20/keeper"
-	"github.com/tharsis/evmos/v4/x/erc20/types"
 )
 
 func (suite *KeeperTestSuite) TestConvertCoinNativeCoin() {
@@ -21,7 +21,6 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeCoin() {
 		mint           int64
 		burn           int64
 		malleate       func(common.Address)
-<<<<<<< HEAD
 		extra          func()
 		expPass        bool
 		selfdestructed bool
@@ -44,13 +43,6 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeCoin() {
 			true,
 			false,
 		},
-=======
-		expPass        bool
-		selfdestructed bool
-	}{
-		{"ok - sufficient funds", 100, 10, func(common.Address) {}, true, false},
-		{"ok - equal funds", 10, 10, func(common.Address) {}, true, false},
->>>>>>> d92cf3c (init testnet)
 		{
 			"ok - suicided contract",
 			10,
@@ -61,7 +53,6 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeCoin() {
 				suite.Require().True(ok)
 				suite.Require().NoError(stateDb.Commit())
 			},
-<<<<<<< HEAD
 			func() {},
 			true,
 			true,
@@ -75,12 +66,6 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeCoin() {
 			false,
 			false,
 		},
-=======
-			true,
-			true,
-		},
-		{"fail - insufficient funds", 0, 10, func(common.Address) {}, false, false},
->>>>>>> d92cf3c (init testnet)
 		{
 			"fail - minting disabled",
 			100,
@@ -90,7 +75,6 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeCoin() {
 				params.EnableErc20 = false
 				suite.app.Erc20Keeper.SetParams(suite.ctx, params)
 			},
-<<<<<<< HEAD
 			func() {},
 			false,
 			false,
@@ -151,11 +135,6 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeCoin() {
 				mockEVMKeeper.On("GetAccountWithoutBalance", mock.Anything, mock.Anything).Return(existingAcc, nil)
 			}, false, false,
 		},
-=======
-			false,
-			false,
-		},
->>>>>>> d92cf3c (init testnet)
 	}
 	for _, tc := range testCases {
 		suite.Run(fmt.Sprintf("Case %s", tc.name), func() {
@@ -179,10 +158,8 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeCoin() {
 			suite.app.BankKeeper.MintCoins(suite.ctx, types.ModuleName, coins)
 			suite.app.BankKeeper.SendCoinsFromModuleToAccount(suite.ctx, types.ModuleName, sender, coins)
 
-<<<<<<< HEAD
 			tc.extra()
-=======
->>>>>>> d92cf3c (init testnet)
+
 			res, err := suite.app.Erc20Keeper.ConvertCoin(ctx, msg)
 			expRes := &types.MsgConvertCoinResponse{}
 			suite.Commit()
@@ -222,7 +199,6 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeCoin() {
 		mint      int64
 		burn      int64
 		reconvert int64
-<<<<<<< HEAD
 		malleate  func()
 		expPass   bool
 	}{
@@ -323,13 +299,6 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeCoin() {
 			},
 			false,
 		},
-=======
-		expPass   bool
-	}{
-		{"ok - sufficient funds", 100, 10, 5, true},
-		{"ok - equal funds", 10, 10, 10, true},
-		{"fail - insufficient funds", 10, 1, 5, false},
->>>>>>> d92cf3c (init testnet)
 	}
 	for _, tc := range testCases {
 		suite.Run(fmt.Sprintf("Case %s", tc.name), func() {
@@ -369,10 +338,8 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeCoin() {
 				suite.address,
 			)
 
-<<<<<<< HEAD
 			tc.malleate()
-=======
->>>>>>> d92cf3c (init testnet)
+
 			res, err := suite.app.Erc20Keeper.ConvertERC20(ctx, msgConvertERC20)
 			expRes := &types.MsgConvertERC20Response{}
 			suite.Commit()
@@ -393,20 +360,15 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeCoin() {
 
 func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 	var contractAddr common.Address
-<<<<<<< HEAD
+
 	var coinName string
-=======
->>>>>>> d92cf3c (init testnet)
 
 	testCases := []struct {
 		name           string
 		mint           int64
 		transfer       int64
 		malleate       func(common.Address)
-<<<<<<< HEAD
 		extra          func()
-=======
->>>>>>> d92cf3c (init testnet)
 		contractType   int
 		expPass        bool
 		selfdestructed bool
@@ -416,10 +378,7 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 			100,
 			10,
 			func(common.Address) {},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractMinterBurner,
 			true,
 			false,
@@ -429,10 +388,7 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 			10,
 			10,
 			func(common.Address) {},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractMinterBurner,
 			true,
 			false,
@@ -442,10 +398,7 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 			10,
 			10,
 			func(common.Address) {},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractMinterBurner,
 			true,
 			false,
@@ -460,10 +413,7 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 				suite.Require().True(ok)
 				suite.Require().NoError(stateDb.Commit())
 			},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractMinterBurner,
 			true,
 			true,
@@ -473,10 +423,7 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 			0,
 			10,
 			func(common.Address) {},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractMinterBurner,
 			false,
 			false,
@@ -490,10 +437,7 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 				params.EnableErc20 = false
 				suite.app.Erc20Keeper.SetParams(suite.ctx, params)
 			},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractMinterBurner,
 			false,
 			false,
@@ -503,10 +447,7 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 			100,
 			10,
 			func(common.Address) {},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractDirectBalanceManipulation,
 			false,
 			false,
@@ -516,15 +457,11 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 			10,
 			10,
 			func(common.Address) {},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractMaliciousDelayed,
 			false,
 			false,
 		},
-<<<<<<< HEAD
 		{
 			"fail - negative transfer contract",
 			10,
@@ -703,8 +640,6 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 			false,
 			false,
 		},
-=======
->>>>>>> d92cf3c (init testnet)
 	}
 	for _, tc := range testCases {
 		suite.Run(fmt.Sprintf("Case %s", tc.name), func() {
@@ -717,11 +652,7 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 			suite.Require().NotNil(contractAddr)
 			suite.Commit()
 
-<<<<<<< HEAD
 			coinName = types.CreateDenom(contractAddr.String())
-=======
-			coinName := types.CreateDenom(contractAddr.String())
->>>>>>> d92cf3c (init testnet)
 			sender := sdk.AccAddress(suite.address.Bytes())
 			msg := types.NewMsgConvertERC20(
 				sdk.NewInt(tc.transfer),
@@ -734,10 +665,9 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeERC20() {
 			suite.Commit()
 			ctx := sdk.WrapSDKContext(suite.ctx)
 
-<<<<<<< HEAD
+
 			tc.extra()
-=======
->>>>>>> d92cf3c (init testnet)
+
 			res, err := suite.app.Erc20Keeper.ConvertERC20(ctx, msg)
 
 			expRes := &types.MsgConvertERC20Response{}
@@ -779,10 +709,7 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeERC20() {
 		mint         int64
 		convert      int64
 		malleate     func(common.Address)
-<<<<<<< HEAD
 		extra        func()
-=======
->>>>>>> d92cf3c (init testnet)
 		contractType int
 		expPass      bool
 	}{
@@ -791,10 +718,7 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeERC20() {
 			100,
 			10,
 			func(common.Address) {},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractMinterBurner,
 			true,
 		},
@@ -803,10 +727,7 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeERC20() {
 			100,
 			100,
 			func(common.Address) {},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractMinterBurner,
 			true,
 		},
@@ -815,10 +736,7 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeERC20() {
 			100,
 			200,
 			func(common.Address) {},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractMinterBurner,
 			false,
 		},
@@ -827,10 +745,7 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeERC20() {
 			100,
 			10,
 			func(common.Address) {},
-<<<<<<< HEAD
 			func() {},
-=======
->>>>>>> d92cf3c (init testnet)
 			contractDirectBalanceManipulation,
 			false,
 		},
@@ -839,7 +754,6 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeERC20() {
 			100,
 			10,
 			func(common.Address) {},
-<<<<<<< HEAD
 			func() {},
 			contractMaliciousDelayed,
 			false,
@@ -940,11 +854,6 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeERC20() {
 			contractMinterBurner,
 			false,
 		},
-=======
-			contractMaliciousDelayed,
-			false,
-		},
->>>>>>> d92cf3c (init testnet)
 	}
 	for _, tc := range testCases {
 		suite.Run(fmt.Sprintf("Case %s", tc.name), func() {
@@ -982,11 +891,9 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeERC20() {
 				receiver,
 				sender,
 			)
-<<<<<<< HEAD
 
 			tc.extra()
-=======
->>>>>>> d92cf3c (init testnet)
+
 			res, err := suite.app.Erc20Keeper.ConvertCoin(ctx, msg)
 
 			expRes := &types.MsgConvertCoinResponse{}
@@ -1006,36 +913,6 @@ func (suite *KeeperTestSuite) TestConvertCoinNativeERC20() {
 	suite.mintFeeCollector = false
 }
 
-<<<<<<< HEAD
-=======
-func (suite *KeeperTestSuite) TestConvertNativeIBC() {
-	suite.SetupTest()
-	base := "ibc/7F1D3FCF4AE79E1554D670D1AD949A9BA4E4A3C76C63093E17E446A46061A7A2"
-
-	validMetadata := banktypes.Metadata{
-		Description: "ATOM IBC voucher (channel 14)",
-		Base:        base,
-		// NOTE: Denom units MUST be increasing
-		DenomUnits: []*banktypes.DenomUnit{
-			{
-				Denom:    base,
-				Exponent: 0,
-			},
-		},
-		Name:    "ATOM channel-14",
-		Symbol:  "ibcATOM-14",
-		Display: base,
-	}
-
-	err := suite.app.BankKeeper.MintCoins(suite.ctx, inflationtypes.ModuleName, sdk.Coins{sdk.NewInt64Coin(base, 1)})
-	suite.Require().NoError(err)
-
-	_, err = suite.app.Erc20Keeper.RegisterCoin(suite.ctx, validMetadata)
-	suite.Require().NoError(err)
-	suite.Commit()
-}
-
->>>>>>> d92cf3c (init testnet)
 func (suite *KeeperTestSuite) TestWrongPairOwnerERC20NativeCoin() {
 	testCases := []struct {
 		name      string
@@ -1087,7 +964,7 @@ func (suite *KeeperTestSuite) TestWrongPairOwnerERC20NativeCoin() {
 		})
 	}
 }
-<<<<<<< HEAD
+
 
 func (suite *KeeperTestSuite) TestConvertCoinNativeIBCVoucher() {
 	testCases := []struct {
@@ -1429,5 +1306,3 @@ func (suite *KeeperTestSuite) TestConvertERC20NativeIBCVoucher() {
 	}
 	suite.mintFeeCollector = false
 }
-=======
->>>>>>> d92cf3c (init testnet)
