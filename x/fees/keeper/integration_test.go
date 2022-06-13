@@ -10,9 +10,9 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/Canto-Network/canto/v3/app"
-	"github.com/Canto-Network/canto/v3/testutil"
-	"github.com/Canto-Network/canto/v3/x/fees/types"
+	"github.com/Canto-Network/canto/v4/app"
+	"github.com/Canto-Network/canto/v4/testutil"
+	"github.com/Canto-Network/canto/v4/x/fees/types"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"

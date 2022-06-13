@@ -12,8 +12,8 @@ import (
 	"github.com/tharsis/ethermint/tests"
 	feemarkettypes "github.com/tharsis/ethermint/x/feemarket/types"
 
-	"github.com/Canto-Network/canto/v3/app"
-	"github.com/Canto-Network/canto/v3/x/fees/types"
+	"github.com/Canto-Network/canto/v4/app"
+	"github.com/Canto-Network/canto/v4/x/fees/types"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 	sdk "github.com/cosmos/cosmos-sdk/types"
