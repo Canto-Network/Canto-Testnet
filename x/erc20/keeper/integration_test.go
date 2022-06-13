@@ -3,6 +3,9 @@ package keeper_test
 import (
 	"math/big"
 
+	"github.com/Canto-Network/canto/v4/app"
+	"github.com/Canto-Network/canto/v4/testutil"
+	"github.com/Canto-Network/canto/v4/x/erc20/types"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
@@ -11,9 +14,6 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/tharsis/ethermint/crypto/ethsecp256k1"
 	"github.com/tharsis/ethermint/encoding"
-	"github.com/Canto-Network/canto/v4/app"
-	"github.com/Canto-Network/canto/v4/testutil"
-	"github.com/Canto-Network/canto/v4/x/erc20/types"
 
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
 	abci "github.com/tendermint/tendermint/abci/types"
@@ -97,8 +97,8 @@ var _ = Describe("ERC20: Converting", Ordered, func() {
 			_, pair = s.setupRegisterCoin()
 			coin = sdk.NewCoin(pair.Denom, amt)
 
-			denom := s.app.ClaimsKeeper.GetParams(s.ctx).ClaimsDenom
-			testutil.FundAccount(s.app.BankKeeper, s.ctx, accAddr, sdk.NewCoins(sdk.NewCoin(denom, sdk.NewInt(1000))))
+			// denom := s.app.ClaimsKeeper.GetParams(s.ctx).ClaimsDenom
+			// testutil.FundAccount(s.app.BankKeeper, s.ctx, accAddr, sdk.NewCoins(sdk.NewCoin(denom, sdk.NewInt(1000))))
 			testutil.FundAccount(s.app.BankKeeper, s.ctx, accAddr, sdk.NewCoins(coin))
 		})
 
@@ -154,8 +154,8 @@ var _ = Describe("ERC20: Converting", Ordered, func() {
 			*pair, _ = s.app.Erc20Keeper.GetTokenPair(s.ctx, id)
 			coin = sdk.NewCoin(pair.Denom, amt)
 
-			denom := s.app.ClaimsKeeper.GetParams(s.ctx).ClaimsDenom
-			testutil.FundAccount(s.app.BankKeeper, s.ctx, accAddr, sdk.NewCoins(sdk.NewCoin(denom, sdk.NewInt(1000))))
+			// denom := s.app.ClaimsKeeper.GetParams(s.ctx).ClaimsDenom
+			// testutil.FundAccount(s.app.BankKeeper, s.ctx, accAddr, sdk.NewCoins(sdk.NewCoin(denom, sdk.NewInt(1000))))
 
 			_ = s.MintERC20Token(contract, s.address, addr, big.NewInt(amt.Int64()))
 			s.Commit()
@@ -228,12 +228,12 @@ func convertERC20(priv *ethsecp256k1.PrivKey, amt sdk.Int, contract common.Addre
 func deliverTx(priv *ethsecp256k1.PrivKey, msgs ...sdk.Msg) abci.ResponseDeliverTx {
 	encodingConfig := encoding.MakeConfig(app.ModuleBasics)
 	accountAddress := sdk.AccAddress(priv.PubKey().Address().Bytes())
-	denom := s.app.ClaimsKeeper.GetParams(s.ctx).ClaimsDenom
+	// denom := s.app.ClaimsKeeper.GetParams(s.ctx).ClaimsDenom
 
 	txBuilder := encodingConfig.TxConfig.NewTxBuilder()
 
 	txBuilder.SetGasLimit(100000000)
-	txBuilder.SetFeeAmount(sdk.Coins{{Denom: denom, Amount: sdk.NewInt(1)}})
+	// txBuilder.SetFeeAmount(sdk.Coins{{Denom: denom, Amount: sdk.NewInt(1)}})
 	err := txBuilder.SetMsgs(msgs...)
 	s.Require().NoError(err)
 

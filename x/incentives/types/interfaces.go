@@ -14,7 +14,7 @@ import (
 	"github.com/tharsis/ethermint/x/evm/statedb"
 	evmtypes "github.com/tharsis/ethermint/x/evm/types"
 
-	inflationtypes "github.com/tharsis/evmos/v4/x/inflation/types"
+	inflationtypes "github.com/Canto-Network/canto/v4/x/inflation/types"
 )
 
 // AccountKeeper defines the expected interface needed to retrieve account info.
@@ -48,7 +48,7 @@ type GovKeeper interface {
 
 // InflationKeeper defines the expected mint keeper interface used on incentives
 type InflationKeeper interface {
-	GetParams(ctx sdk.Context) (params inflationtypes.Params)
+	GetParams(ctx sdk.Context) inflationtypes.Params
 }
 
 // EVMKeeper defines the expected EVM keeper interface used on erc20

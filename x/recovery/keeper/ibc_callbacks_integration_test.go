@@ -3,18 +3,18 @@ package keeper_test
 import (
 	"time"
 
+	"github.com/Canto-Network/canto/v4/app"
+	"github.com/Canto-Network/canto/v4/testutil"
+	"github.com/Canto-Network/canto/v4/x/recovery/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
 	channeltypes "github.com/cosmos/ibc-go/v3/modules/core/04-channel/types"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/Canto-Network/canto/v4/app"
-	"github.com/Canto-Network/canto/v4/testutil"
-	"github.com/Canto-Network/canto/v4/x/recovery/types"
 )
 
 var _ = Describe("Recovery: Performing an IBC Transfer", Ordered, func() {
-	coinEvmos := sdk.NewCoin("acanto", sdk.NewInt(10000))
+	coinCanto := sdk.NewCoin("acanto", sdk.NewInt(10000))
 	coinOsmo := sdk.NewCoin("uosmo", sdk.NewInt(10))
 	coinAtom := sdk.NewCoin("uatom", sdk.NewInt(10))
 

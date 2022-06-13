@@ -2,27 +2,28 @@ package keeper
 
 import (
 	"math/big"
+
 	"github.com/Canto-Network/canto/v4/contracts"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	
 	"github.com/Canto-Network/canto/v4/x/unigov/types"
-	
+
 	erc20types "github.com/Canto-Network/canto/v4/x/erc20/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 )
 
+// The map contract is a smart contract that is deployed on the EVM to hold all passed proposals
 
-//method for appending UniGov proposal types to the Unigov Map contract
+// method used to append a lending market proposal to the map contract
 func (k *Keeper) AppendLendingMarketProposal(ctx sdk.Context, lm *types.LendingMarketProposal) (*types.LendingMarketProposal, error) {
 	m := lm.GetMetadata()
 	var err error
 	if m.GetPropId() == 0 {
 		m.PropId, err = k.govKeeper.GetProposalID(ctx)
 	}
-	
+
 	if err != nil {
 		return nil, sdkerrors.Wrap(err, "Error obtaining Proposal ID")
 	}
@@ -42,16 +43,16 @@ func (k *Keeper) AppendLendingMarketProposal(ctx sdk.Context, lm *types.LendingM
 
 	_, err = k.erc20Keeper.CallEVM(ctx, contracts.ProposalStoreContract.ABI, types.ModuleAddress, *k.mapContractAddr, true,
 		"AddProposal", sdk.NewIntFromUint64(m.GetPropId()).BigInt(), lm.GetTitle(), lm.GetDescription(), ToAddress(m.GetAccount()),
-	    ToBigInt(m.GetValues()), m.GetSignatures(), ToBytes(m.GetCalldatas()))
-
+		ToBigInt(m.GetValues()), m.GetSignatures(), ToBytes(m.GetCalldatas()))
 
 	if err != nil {
 		return nil, sdkerrors.Wrap(err, "Error in EVM Call")
 	}
-	
+
 	return lm, nil
 }
 
+// method used to initially deploy the map contract to EVM
 func (k Keeper) DeployMapContract(ctx sdk.Context, lm *types.LendingMarketProposal) (common.Address, error) {
 
 	m := lm.GetMetadata()
@@ -75,14 +76,13 @@ func (k Keeper) DeployMapContract(ctx sdk.Context, lm *types.LendingMarketPropos
 
 	contractAddr := crypto.CreateAddress(types.ModuleAddress, nonce)
 	_, err = k.erc20Keeper.CallEVMWithData(ctx, types.ModuleAddress, nil, data, true)
-	
+
 	if err != nil {
 		return common.Address{}, sdkerrors.Wrap(err, "failed to deploy contract")
 	}
 
 	return contractAddr, nil
 }
-
 
 func ToAddress(addrs []string) []common.Address {
 	if addrs == nil {
@@ -91,7 +91,7 @@ func ToAddress(addrs []string) []common.Address {
 
 	arr := make([]common.Address, len(addrs))
 
-	for i,v := range addrs {
+	for i, v := range addrs {
 		arr[i] = common.HexToAddress(v)
 	}
 
@@ -102,7 +102,7 @@ func ToBytes(strs []string) [][]byte {
 	if strs == nil {
 		return make([][]byte, 0)
 	}
-	
+
 	arr := make([][]byte, len(strs))
 
 	for i, v := range strs {
@@ -115,7 +115,7 @@ func ToBigInt(ints []uint64) []*big.Int {
 	if ints == nil {
 		return make([]*big.Int, 0)
 	}
-	
+
 	arr := make([]*big.Int, len(ints))
 
 	for i, a := range ints {
@@ -124,4 +124,3 @@ func ToBigInt(ints []uint64) []*big.Int {
 
 	return arr
 }
-	
