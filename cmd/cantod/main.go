@@ -7,8 +7,8 @@ import (
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Canto-Network/canto/v3/app"
-	cmdcfg "github.com/Canto-Network/canto/v3/cmd/config"
+	"github.com/Canto-Network/canto/v4/app"
+	cmdcfg "github.com/Canto-Network/canto/v4/cmd/config"
 )
 
 func main() {

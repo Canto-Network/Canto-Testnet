@@ -7,8 +7,7 @@ import (
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 	ibcclientkeeper "github.com/cosmos/ibc-go/v3/modules/core/02-client/keeper"
 	ibcclienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
-
-	"github.com/Canto-Network/canto/v4/types"
+	types2 "github.com/tharsis/evmos/v4/types"
 )
 
 // CreateUpgradeHandler creates an SDK upgrade handler for v4
@@ -23,7 +22,7 @@ func CreateUpgradeHandler(
 		// - https://docs.cosmos.network/master/building-modules/upgrade.html#registering-migrations
 		// - https://docs.cosmos.network/master/migrations/chain-upgrade-guide-044.html#chain-upgrade
 
-		if types.IsMainnet(ctx.ChainID()) {
+		if types2.IsMainnet(ctx.ChainID()) {
 			if err := UpdateIBCClients(ctx, clientKeeper); err != nil {
 				// log error instead of aborting the upgrade
 				logger.Error("FAILED TO UPDATE IBC CLIENTS", "error", err.Error())

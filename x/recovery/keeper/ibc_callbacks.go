@@ -15,7 +15,7 @@ import (
 	"github.com/cosmos/ibc-go/v3/modules/core/exported"
 
 	"github.com/Canto-Network/canto/v4/ibc"
-	evmos "github.com/Canto-Network/canto/v4/types"
+	canto "github.com/Canto-Network/canto/v4/types"
 	"github.com/Canto-Network/canto/v4/x/recovery/types"
 )
 

@@ -38,9 +38,9 @@ import (
 	servercfg "github.com/tharsis/ethermint/server/config"
 	srvflags "github.com/tharsis/ethermint/server/flags"
 
-	"github.com/Canto-Network/canto/v3/app"
-	cmdcfg "github.com/Canto-Network/canto/v3/cmd/config"
-	cantokr "github.com/Canto-Network/canto/v3/crypto/keyring"
+	"github.com/Canto-Network/canto/v4/app"
+	cmdcfg "github.com/Canto-Network/canto/v4/cmd/config"
+	cantokr "github.com/Canto-Network/canto/v4/crypto/keyring"
 )
 
 const (

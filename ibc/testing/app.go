@@ -21,6 +21,7 @@ import (
 	"github.com/cosmos/ibc-go/v3/testing/simapp"
 
 	ethermint "github.com/tharsis/ethermint/types"
+	cantoapp "github.com/Canto-Network/canto/v4/app"
 )
 
 var DefaultTestingAppInit func() (ibcgotesting.TestingApp, map[string]json.RawMessage) = cantoapp.SetupTestingApp

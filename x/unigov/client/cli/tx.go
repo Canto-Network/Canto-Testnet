@@ -14,7 +14,7 @@ import (
 
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	
-	"github.com/Canto-Network/canto/v3/x/unigov/types"
+	"github.com/Canto-Network/canto/v4/x/unigov/types"
 )
 
 var (

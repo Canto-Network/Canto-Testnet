@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"path/filepath"
 	"encoding/json"
-	"github.com/Canto-Network/canto/v3/x/unigov/types"
+	"github.com/Canto-Network/canto/v4/x/unigov/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 )
 

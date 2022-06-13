@@ -1,7 +1,7 @@
 package testutil
 
 import (
-	inflationtypes "github.com/Canto-Network/canto/v3/x/inflation/types"
+	inflationtypes "github.com/Canto-Network/canto/v4/x/inflation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 )
