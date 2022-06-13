@@ -19,9 +19,9 @@ import (
 
 	evm "github.com/tharsis/ethermint/x/evm/types"
 
-	"github.com/tharsis/evmos/v4/app"
-	epochstypes "github.com/tharsis/evmos/v4/x/epochs/types"
-	"github.com/tharsis/evmos/v4/x/inflation/types"
+	"github.com/Canto-Network/canto/v4/app"
+	epochstypes "github.com/Canto-Network/canto/v4/x/epochs/types"
+	"github.com/Canto-Network/canto/v4/x/inflation/types"
 )
 
 var denomMint = types.DefaultInflationDenom

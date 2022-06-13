@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	//sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/Canto-Network/canto/v3/x/unigov/types"
+	"github.com/Canto-Network/canto/v4/x/unigov/types"
 	//"github.com/Canto-Network/canto/v3/x/unigov/keeper"
 	//keepertest "github.com/Canto-Network/canto/v3/testutil/keeper"
 )

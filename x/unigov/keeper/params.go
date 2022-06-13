@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"github.com/Canto-Network/canto/v3/x/unigov/types"
+	"github.com/Canto-Network/canto/v4/x/unigov/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

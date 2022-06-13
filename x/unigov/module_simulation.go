@@ -4,8 +4,8 @@ import (
 	"math/rand"
 
 	//"github.com/Canto-Network/canto/v3/testutil/sample"
-	unigovsimulation "github.com/Canto-Network/canto/v3/x/unigov/simulation"
-	"github.com/Canto-Network/canto/v3/x/unigov/types"
+	unigovsimulation "github.com/Canto-Network/canto/v4/x/unigov/simulation"
+	"github.com/Canto-Network/canto/v4/x/unigov/types"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	simappparams "github.com/cosmos/cosmos-sdk/simapp/params"
 	sdk "github.com/cosmos/cosmos-sdk/types"

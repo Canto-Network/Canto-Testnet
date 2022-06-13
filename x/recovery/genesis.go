@@ -3,8 +3,8 @@ package recovery
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/tharsis/evmos/v4/x/recovery/keeper"
-	"github.com/tharsis/evmos/v4/x/recovery/types"
+	"github.com/Canto-Network/canto/v4/x/recovery/keeper"
+	"github.com/Canto-Network/canto/v4/x/recovery/types"
 )
 
 // InitGenesis import module genesis
