@@ -16,8 +16,7 @@ import (
 	"github.com/tharsis/ethermint/encoding"
 	feemarkettypes "github.com/tharsis/ethermint/x/feemarket/types"
 
-	"github.com/tharsis/evmos/v4/cmd/config"
-	"github.com/tharsis/evmos/v4/types"
+	"github.com/Canto-Network/canto/v4/cmd/config"
 )
 
 func init() {
@@ -81,7 +80,7 @@ func Setup(
 		// Initialize the chain
 		app.InitChain(
 			abci.RequestInitChain{
-				ChainId:         types.MainnetChainID + "-1",
+				ChainId:         MainnetChainID + "-1",
 				Validators:      []abci.ValidatorUpdate{},
 				ConsensusParams: DefaultConsensusParams,
 				AppStateBytes:   stateBytes,

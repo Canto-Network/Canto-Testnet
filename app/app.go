@@ -4,6 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/Canto-Network/canto/v4/x/fees"
+	"github.com/Canto-Network/canto/v4/x/unigov"
 	"io"
 	"net/http"
 	"os"
@@ -106,34 +108,39 @@ import (
 	feemarkettypes "github.com/tharsis/ethermint/x/feemarket/types"
 
 	// unnamed import of statik for swagger UI support
-	_ "github.com/tharsis/evmos/v4/client/docs/statik"
+	_ "github.com/Canto-Network/canto/v4/client/docs/statik"
 
-	"github.com/tharsis/evmos/v4/app/ante"
-	v2 "github.com/tharsis/evmos/v4/app/upgrades/v2"
-	v4 "github.com/tharsis/evmos/v4/app/upgrades/v4"
-	"github.com/tharsis/evmos/v4/x/claims"
-	claimskeeper "github.com/tharsis/evmos/v4/x/claims/keeper"
-	claimstypes "github.com/tharsis/evmos/v4/x/claims/types"
-	"github.com/tharsis/evmos/v4/x/epochs"
-	epochskeeper "github.com/tharsis/evmos/v4/x/epochs/keeper"
-	epochstypes "github.com/tharsis/evmos/v4/x/epochs/types"
-	"github.com/tharsis/evmos/v4/x/erc20"
-	erc20client "github.com/tharsis/evmos/v4/x/erc20/client"
-	erc20keeper "github.com/tharsis/evmos/v4/x/erc20/keeper"
-	erc20types "github.com/tharsis/evmos/v4/x/erc20/types"
-	"github.com/tharsis/evmos/v4/x/incentives"
-	incentivesclient "github.com/tharsis/evmos/v4/x/incentives/client"
-	incentiveskeeper "github.com/tharsis/evmos/v4/x/incentives/keeper"
-	incentivestypes "github.com/tharsis/evmos/v4/x/incentives/types"
-	"github.com/tharsis/evmos/v4/x/inflation"
-	inflationkeeper "github.com/tharsis/evmos/v4/x/inflation/keeper"
-	inflationtypes "github.com/tharsis/evmos/v4/x/inflation/types"
-	"github.com/tharsis/evmos/v4/x/recovery"
-	recoverykeeper "github.com/tharsis/evmos/v4/x/recovery/keeper"
-	recoverytypes "github.com/tharsis/evmos/v4/x/recovery/types"
-	"github.com/tharsis/evmos/v4/x/vesting"
-	vestingkeeper "github.com/tharsis/evmos/v4/x/vesting/keeper"
-	vestingtypes "github.com/tharsis/evmos/v4/x/vesting/types"
+	"github.com/Canto-Network/canto/v4/app/ante"
+	v2 "github.com/Canto-Network/canto/v4/app/upgrades/v2"
+	v4 "github.com/Canto-Network/canto/v4/app/upgrades/v4"
+	feeskeeper "github.com/Canto-Network/canto/v4/x/fees/keeper"
+	feestypes "github.com/Canto-Network/canto/v4/x/fees/types"
+	"github.com/Canto-Network/canto/v4/x/epochs"
+	epochskeeper "github.com/Canto-Network/canto/v4/x/epochs/keeper"
+	epochstypes "github.com/Canto-Network/canto/v4/x/epochs/types"
+	"github.com/Canto-Network/canto/v4/x/erc20"
+	erc20client "github.com/Canto-Network/canto/v4/x/erc20/client"
+	erc20keeper "github.com/Canto-Network/canto/v4/x/erc20/keeper"
+	erc20types "github.com/Canto-Network/canto/v4/x/erc20/types"
+	"github.com/Canto-Network/canto/v4/x/incentives"
+	incentivesclient "github.com/Canto-Network/canto/v4/x/incentives/client"
+	incentiveskeeper "github.com/Canto-Network/canto/v4/x/incentives/keeper"
+	incentivestypes "github.com/Canto-Network/canto/v4/x/incentives/types"
+	"github.com/Canto-Network/canto/v4/x/inflation"
+	inflationkeeper "github.com/Canto-Network/canto/v4/x/inflation/keeper"
+	inflationtypes "github.com/Canto-Network/canto/v4/x/inflation/types"
+	"github.com/Canto-Network/canto/v4/x/recovery"
+	recoverykeeper "github.com/Canto-Network/canto/v4/x/recovery/keeper"
+	recoverytypes "github.com/Canto-Network/canto/v4/x/recovery/types"
+	"github.com/Canto-Network/canto/v4/x/vesting"
+	vestingkeeper "github.com/Canto-Network/canto/v4/x/vesting/keeper"
+	vestingtypes "github.com/Canto-Network/canto/v4/x/vesting/types"
+
+	// unigov imports
+	"github.com/Canto-Network/canto/v4/x/unigov"
+	unigovclient "github.com/Canto-Network/canto/v4/x/unigov/client"
+	unigovkeeper "github.com/Canto-Network/canto/v4/x/unigov/keeper"
+	unigovtypes "github.com/Canto-Network/canto/v4/x/unigov/types"
 )
 
 func init() {
@@ -176,7 +183,7 @@ var (
 			ibcclientclient.UpdateClientProposalHandler, ibcclientclient.UpgradeProposalHandler,
 			// Canto proposal types
 			erc20client.RegisterCoinProposalHandler, erc20client.RegisterERC20ProposalHandler,
-			erc20client.ToggleTokenRelayProposalHandler, erc20client.UpdateTokenPairERC20ProposalHandler,
+			erc20client.ToggleTokenConversionProposalHandler,
 			incentivesclient.RegisterIncentiveProposalHandler, incentivesclient.CancelIncentiveProposalHandler, unigovclient.LendingMarketProposalHandler, unigovclient.TreasuryProposalHandler, // <----- uni gov proposal handler
 		),
 		params.AppModuleBasic{},
