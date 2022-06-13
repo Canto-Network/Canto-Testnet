@@ -51,7 +51,7 @@ type ClawbackVestingAccount struct {
 func (m *ClawbackVestingAccount) Reset()      { *m = ClawbackVestingAccount{} }
 func (*ClawbackVestingAccount) ProtoMessage() {}
 func (*ClawbackVestingAccount) Descriptor() ([]byte, []int) {
-	return fileDescriptor_5f1a3c86c0cebe5f, []int{0}
+	return fileDescriptor_c580f9d3d2a7f889, []int{0}
 }
 func (m *ClawbackVestingAccount) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)

@@ -1,7 +1,6 @@
 package app
 
 import (
-	"fmt"
 	"strings"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -9,7 +8,6 @@ import (
 
 	v2 "github.com/Canto-Network/canto/v4/app/upgrades/mainnet/v2"
 	tv3 "github.com/Canto-Network/canto/v4/app/upgrades/testnet/v3"
-	"github.com/Canto-Network/canto/v4/types"
 )
 
 // BeginBlockForks executes any necessary fork logic based upon the current block height.

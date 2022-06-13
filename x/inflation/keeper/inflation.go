@@ -2,10 +2,10 @@ package keeper
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"strings"
 
 	ethermint "github.com/tharsis/ethermint/types"
 
-	evmos "github.com/Canto-Network/canto/v4/types"
 	incentivestypes "github.com/Canto-Network/canto/v4/x/incentives/types"
 	"github.com/Canto-Network/canto/v4/x/inflation/types"
 )
@@ -95,12 +95,15 @@ func (k Keeper) GetProportions(
 	)
 }
 
+func (k Keeper) isMainnetChainID(ctx sdk.Context) bool {
+	return strings.Contains(ctx.ChainID(), "canto_9001-")
+}
+
 // BondedRatio the fraction of the staking tokens which are currently bonded
 // It doesn't consider team allocation for inflation
 func (k Keeper) BondedRatio(ctx sdk.Context) sdk.Dec {
 	stakeSupply := k.stakingKeeper.StakingTokenSupply(ctx)
-
-	isMainnet := evmos.IsMainnet(ctx.ChainID())
+	isMainnet := k.isMainnetChainID(ctx)
 
 	if !stakeSupply.IsPositive() || (isMainnet && stakeSupply.LTE(teamAlloc)) {
 		return sdk.ZeroDec()
@@ -123,7 +126,7 @@ func (k Keeper) GetCirculatingSupply(ctx sdk.Context) sdk.Dec {
 	teamAllocation := teamAlloc.ToDec()
 
 	// Consider team allocation only on mainnet chain id
-	if evmos.IsMainnet(ctx.ChainID()) {
+	if k.isMainnetChainID(ctx) {
 		circulatingSupply = circulatingSupply.Sub(teamAllocation)
 	}
 

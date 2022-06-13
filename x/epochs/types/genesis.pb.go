@@ -43,7 +43,7 @@ func (m *EpochInfo) Reset()         { *m = EpochInfo{} }
 func (m *EpochInfo) String() string { return proto.CompactTextString(m) }
 func (*EpochInfo) ProtoMessage()    {}
 func (*EpochInfo) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c74bc0b3e7fa01c2, []int{0}
+	return fileDescriptor_215c7e170263b152, []int{0}
 }
 func (m *EpochInfo) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -130,7 +130,7 @@ func (m *GenesisState) Reset()         { *m = GenesisState{} }
 func (m *GenesisState) String() string { return proto.CompactTextString(m) }
 func (*GenesisState) ProtoMessage()    {}
 func (*GenesisState) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c74bc0b3e7fa01c2, []int{1}
+	return fileDescriptor_215c7e170263b152, []int{1}
 }
 func (m *GenesisState) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
