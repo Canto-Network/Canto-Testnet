@@ -16,7 +16,6 @@ import (
 
 	"github.com/tharsis/ethermint/testutil/network"
 
-	evmosnetwork "github.com/tharsis/evmos/v4/testutil/network"
 	"github.com/tharsis/evmos/v4/x/erc20/client/cli"
 )
 
@@ -39,7 +38,7 @@ func (s *IntegrationTestSuite) SetupSuite() {
 	s.T().Log("setting up integration test suite")
 
 	var err error
-	s.cfg = evmosnetwork.DefaultConfig()
+	s.cfg = cantonetwork.DefaultConfig()
 	s.cfg.NumValidators = 1
 
 	s.network, err = network.New(s.T(), s.T().TempDir(), s.cfg)
@@ -68,7 +67,7 @@ func (s *IntegrationTestSuite) TestCmdParams() {
 			[]string{
 				fmt.Sprintf("--%s=json", tmcli.OutputFlag),
 			},
-			`{"params":{"enable_erc20":true,"token_pair_voting_period":"172800s","enable_evm_hook":true}}`,
+			`{"params":{"enable_intrarelayer":true,"token_pair_voting_period":"172800s","enable_evm_hook":true}}`,
 		},
 	}
 
