@@ -1,7 +1,7 @@
 KEY="mykey"
 KEY2="mykey2"
 KEY3="mykey3"
-CHAINID="canto_7777-1"
+CHAINID="canto_9624-1"
 MONIKER="plex-validator"
 KEYRING="test"
 KEYALGO="eth_secp256k1"
