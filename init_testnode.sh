@@ -1,3 +1,5 @@
+#!/bin/bash
+
 KEY="mykey"
 KEY2="mykey2"
 KEY3="mykey3"
