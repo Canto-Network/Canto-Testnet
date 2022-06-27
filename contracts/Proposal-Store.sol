@@ -26,11 +26,7 @@ contract ProposalStore {
         // @notice The ordered list of calldata to be passed to each call
         bytes[] calldatas;
     }
-	
-    modifier OnlyUniGov {
-	require(msg.sender == UniGovModAcct);
-	_;
-    }
+
 
     address private UniGovModAcct;
     
@@ -45,6 +41,7 @@ contract ProposalStore {
     
     function AddProposal(uint propId, string memory title, string memory desc, address[] memory targets, 
                         uint[] memory values, string[] memory signatures, bytes[] memory calldatas) public {
+        require(msg.sender == UniGovModAcct);
         Proposal memory newProp = Proposal(propId, title, desc, targets, values, signatures, calldatas);
         proposals[propId] = newProp;
     }
