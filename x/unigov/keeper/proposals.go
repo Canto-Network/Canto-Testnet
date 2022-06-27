@@ -8,6 +8,8 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
 	"github.com/Canto-Network/canto/v4/x/unigov/types"
+	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
+
 
 	erc20types "github.com/Canto-Network/canto/v4/x/erc20/types"
 	"github.com/ethereum/go-ethereum/common"
@@ -23,10 +25,14 @@ func (k *Keeper) AppendLendingMarketProposal(ctx sdk.Context, lm *types.LendingM
 	if m.GetPropId() == 0 {
 		m.PropId, err = k.govKeeper.GetProposalID(ctx)
 	}
-
 	if err != nil {
 		return nil, sdkerrors.Wrap(err, "Error obtaining Proposal ID")
 	}
+	//validate that the proposal targets are indeed valid
+	if err = ValidateTargets(lm.GetMetadata(),ctx, k); err != nil {
+		return nil, err
+	}
+
 	nonce, err := k.accKeeper.GetSequence(ctx, types.ModuleAddress.Bytes())
 	if nonce == 0 {
 
@@ -123,4 +129,14 @@ func ToBigInt(ints []uint64) []*big.Int {
 	}
 
 	return arr
+}
+
+
+func ValidateTargets(lm *types.LendingMarketMetadata, ctx sdk.Context, k *Keeper) error {
+	for _, a := range lm.GetAccount() {
+		if acc := k.evmKeeper.GetAccount(ctx, common.HexToAddress(a)); acc == nil {
+			return sdkerrors.Wrapf(govtypes.ErrInvalidProposalContent, "account address not valid")
+		}
+	}
+	return nil
 }

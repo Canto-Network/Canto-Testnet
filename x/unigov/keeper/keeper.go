@@ -22,6 +22,7 @@ type (
 		accKeeper       types.AccountKeeper
 		erc20Keeper     types.ERC20Keeper
 		govKeeper       types.GovKeeper
+		evmKeeper       types.EvmKeeper
 	}
 )
 
@@ -33,7 +34,7 @@ func NewKeeper(
 	ak types.AccountKeeper,
 	ek types.ERC20Keeper,
 	gk types.GovKeeper,
-
+	evmk types.EvmKeeper,
 ) Keeper {
 	// set KeyTable if it has not already been set
 	if !ps.HasKeyTable() {
@@ -42,7 +43,6 @@ func NewKeeper(
 
 	mca := new(common.Address)
 	return Keeper{
-
 		cdc:             cdc,
 		storeKey:        storeKey,
 		mapContractAddr: mca,
@@ -50,6 +50,7 @@ func NewKeeper(
 		accKeeper:       ak,
 		erc20Keeper:     ek,
 		govKeeper:       gk,
+		evmKeeper:       evmk,
 	}
 }
 

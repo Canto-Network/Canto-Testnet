@@ -4,8 +4,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/tharsis/ethermint/x/evm/statedb"
 	evmtypes "github.com/tharsis/ethermint/x/evm/types"
-	
 )
 
 //Required for deploying Map-Contract/Caling setter methods of Map-Contract
@@ -26,6 +26,10 @@ type AccountKeeper interface {
 	//GetAccount(ctx sdk.Context, addr sdk.AccAddress)
 	GetModuleAddress(moduleName string) sdk.AccAddress
 	GetSequence(sdk.Context, sdk.AccAddress) (uint64, error)
+}
+
+type  EvmKeeper interface {
+	GetAccount(ctx sdk.Context, addr common.Address) *statedb.Account
 }
 
 type GovKeeper interface {

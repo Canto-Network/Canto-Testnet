@@ -29,6 +29,7 @@ func handleLendingMarketProposal(ctx sdk.Context, k *keeper.Keeper, p *types.Len
 	if err != nil {
 		return err
 	}
+
 	_, err = k.AppendLendingMarketProposal(ctx, p) //Defined analogous to (erc20)k.RegisterCoin
 	if err != nil {
 		return err
